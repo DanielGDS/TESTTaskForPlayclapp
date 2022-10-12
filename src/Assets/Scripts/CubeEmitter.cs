@@ -10,21 +10,21 @@ public class CubeEmitter : MonoBehaviour
     [SerializeField] TMP_InputField XInputField;
     [SerializeField] TMP_InputField YInputField;
     [SerializeField] TMP_InputField ZInputField;
-    [Header("Values")]
-    public float speed,delay;
-    public float x,y,z;
+
+    private float speed,delay;
+    private float x,y,z;
+    private Vector3 CurrentTarget;
+
     [Space(15)]
-    public Vector3 CurrentTarget;
-    [Space(15)]
-    public GameObject prefab;
+    [SerializeField] GameObject prefab;
     [SerializeField] GameObject cube;
 
     [Header("Debug")]
     [SerializeField] TextMeshProUGUI targetPosText;
     [SerializeField] TextMeshProUGUI posText;
     [SerializeField] TextMeshProUGUI delayText;
-    private float delayTime;
-    private float _delay;
+
+    private float delayTime, _delay;
     void Start()
     {
         speedInputField.onEndEdit.AddListener(delegate { ChangeSpeed(speedInputField.text); });
@@ -45,8 +45,8 @@ public class CubeEmitter : MonoBehaviour
     void CreateCube() => cube = Instantiate(prefab, this.transform.position, Quaternion.identity);
     void MoveToTarget()
     {
-        if (cube == null) return;
-        cube.transform.position = Vector3.MoveTowards(cube.transform.position, CurrentTarget, Time.deltaTime * speed);
+        if (cube != null)
+            cube.transform.position = Vector3.MoveTowards(cube.transform.position, CurrentTarget, Time.deltaTime * speed);
     }
 
     void Update()
@@ -60,7 +60,6 @@ public class CubeEmitter : MonoBehaviour
 
         //Change target position every frame
         CurrentTarget = new Vector3(this.x, this.y, this.z);
-
 
         if (cube != null)
         {
