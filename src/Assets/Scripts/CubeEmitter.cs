@@ -46,7 +46,10 @@ public class CubeEmitter : MonoBehaviour
     void MoveToTarget()
     {
         if (cube != null)
-            cube.transform.position = Vector3.MoveTowards(cube.transform.position, CurrentTarget, Time.deltaTime * speed);
+        {
+            cube.transform.position 
+                = Vector3.MoveTowards(cube.transform.position, CurrentTarget, Time.deltaTime * speed);
+        }
     }
 
     void Update()
