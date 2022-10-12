@@ -55,9 +55,17 @@ public class CubeEmitter : MonoBehaviour
     void Update()
     {
         #region Debug section
-        if (cube!=null)
-            posText.text = $"pos : x:{(int)cube.transform.position.x} | y:{(int)cube.transform.position.y} | z:{(int)cube.transform.position.z}";
-        targetPosText.text = $"target : x:{(int)CurrentTarget.x} | y:{(int)CurrentTarget.y} | z:{(int)CurrentTarget.z}";
+        if (cube != null)
+        {
+            posText.text = $"pos : " +
+                $"x:{(int)cube.transform.position.x} | " +
+                $"y:{(int)cube.transform.position.y} | " +
+                $"z:{(int)cube.transform.position.z}";
+        }
+        targetPosText.text = $"target : " +
+            $"x:{(int)CurrentTarget.x} | " +
+            $"y:{(int)CurrentTarget.y} | " +
+            $"z:{(int)CurrentTarget.z}";
         delayText.text = $"delay: {_delay}";
         #endregion
 
